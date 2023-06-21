@@ -129,14 +129,14 @@ void pattern10(int n)
         }
         cout<<endl;
     }
-    for(i=0;i<n;i++)
-    {
-        for(j=0;j<(n-i-1);j++)
+    for(i=n-2;i>=0;i--)
         {
-            cout<<"* ";
+            for(j=0;j<=i;j++)
+            {
+                cout<<"* ";
+            }
+            cout<<endl;
         }
-        cout<<endl;
-    }
 }
 
 void pattern11(int n)
@@ -368,7 +368,7 @@ int main()
     // pattern7(n);
     // pattern8(n);
     // pattern9(n);
-    // pattern10(n);
+    pattern10(n);
     // pattern11(n);
     // pattern12(n);
     // pattern13(n);
@@ -380,6 +380,6 @@ int main()
     // pattern19(n);
     // pattern20(n);
     // pattern21(n);
-    pattern22(n);
+    // pattern22(n);
     return 0;
 }
