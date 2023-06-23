@@ -1,0 +1,260 @@
+// Topic : Count Digits
+
+
+// GFG 
+// Problem : 
+// Given a number N. Count the number of digits in N which evenly divides N.
+// Note :- Evenly divides means whether N is divisible by a digit i.e. leaves a remainder 0 when divided.
+// Solution :
+
+class Solution{
+public:
+    int evenlyDivides(int N){
+        //code here
+        int num,r,c=0;
+        num=N;
+        while(N!=0)
+        {
+            r=N%10;
+            if(r!=0)
+            {
+                if(num%r==0)
+                ++c;
+            }
+            N=N/10;
+        }
+        return c;
+    }
+};
+
+
+// Topic : Reverse a Number
+
+
+// GFG 
+// Problem : 
+// Given a 32 bit number X, reverse its binary form and print the answer in decimal.
+// Solution :
+
+class Solution {
+  public:
+    long long reversedBits(long long X) {
+        // code here
+        int bit,cnt=0;
+        long rev=0;
+        while(X!=0)
+        {
+            bit=X&1;
+            if(bit==1)
+                rev=rev+pow(2,31-cnt);
+            X=X>>1;
+            ++cnt;
+        }
+        if(rev<0)
+        {
+            rev=(-1)*rev;
+        }
+        return rev;
+    }
+};
+
+// Leetcode
+// Problem : 
+// Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+// Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+// Solution :
+
+class Solution {
+public:
+    int reverse(int x) {
+        int digit,ans=0;
+        while(x!=0)
+        {
+            digit=x%10;
+            if((ans>(INT_MAX/10)) || (ans<(INT_MIN/10)))
+                return 0;
+            ans=(ans*10)+digit;
+            x=x/10;
+        }
+        return ans;
+    }
+};
+
+
+// Topic : 	Check Palindrome
+
+
+// GFG 
+// Problem : 
+// Given an integer, check whether it is a palindrome or not.
+// Solution :
+
+class Solution
+{
+	public:
+		string is_palindrome(int n)
+		{
+		    // Code here.
+		    int digit,num=n;
+		    int rev=0;
+		    while(n!=0)
+		    {
+		        digit=n%10;
+		        n=n/10;
+		        rev=digit+(rev*10);
+		    }
+		    if(rev==num)
+		        return "Yes";
+		    return "No";
+		}
+};
+
+// Leetcode
+// Problem : 
+// Given an integer x, return true if x is a palindrome, and false otherwise.
+// Solution :
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        stack<int> st;
+        if(x<0)
+            return false;
+        int y=x;
+        while(x)
+        {
+            st.push(x%10);
+            x/=10;
+        }
+        while(y)
+        {
+            if(st.top()!=(y%10))
+               return false;
+             st.pop();
+               y/=10;
+        }
+        return true;
+        
+    }
+};
+
+
+// Topic : GCD Or HCF
+
+
+// GFG 
+// Problem : 
+// Given two numbers A and B. The task is to find out their LCM and GCD.
+// Solution :
+
+class Solution {
+  public:
+    vector<long long> lcmAndGcd(long long A , long long B) {
+        // code here
+        vector<long long> v;
+        long long lcm,gcd=1;
+        long long a=A,b=B;
+        while(A>0 && B>0)
+        {
+            if(A>B) 
+                A=A%B;
+            else
+                B=B%A;
+        }
+        if(A==0)
+            gcd=B;
+        else
+            gcd=A;
+        lcm=(a*b)/gcd;
+        v.push_back(lcm);
+        v.push_back(gcd);
+        return v;
+    }
+};
+
+
+// Topic : Armstrong Numbers
+
+
+// GFG 
+// Problem : 
+// For a given 3 digit number, find whether it is armstrong number or not. An Armstrong number of three digits is an integer such that the sum of the cubes of its digits is equal to the number itself. Return "Yes" if it is a armstrong number else return "No".
+// NOTE: 371 is an Armstrong number since 33 + 73 + 13 = 371
+// Solution : 
+
+class Solution {
+  public:
+    string armstrongNumber(int n){
+        // code here
+        int ld,sum=0;
+        int num=n;
+        while(n!=0)
+        {
+            ld=n%10;
+            sum=sum+pow(ld,3);
+            n/=10;
+        }
+        if(sum==num)
+            return "Yes";
+        return "No";
+    }
+};
+
+
+// Leetcode
+// Problem : 
+// didn't have access (Premium)
+
+
+// Topic : Print all Divisors
+
+
+// GFG 
+// Problem : 
+// Given a positive integer N., The task is to find the value of    \sum_{i=1}^{i=n} F(i)  where function F(i) for the number i be defined as the sum of all divisors of ‘i‘.
+// Solution : 
+
+class Solution
+{
+public:
+    long long sumOfDivisors(int N)
+    {
+        // Write Your Code here
+        int i;
+        long long sum=0;
+        for(i=1;i<=N;i++)
+            sum+=i*(N/i);
+        return sum;
+    }
+};
+
+
+// Topic : Check for Prime
+
+
+// GFG 
+// Problem : 
+// Given an array of N integers arr[] where each element represents the maximum length of the jump that can be made forward from that element. This means if arr[i] = x, then we can jump any distance y such that y ≤ x.
+// Find the minimum number of jumps to reach the end of the array (starting from the first element). If an element is 0, then you cannot move through that element.
+// Note: Return -1 if you can't reach the end of the array.
+// Solution :
+
+class Solution{
+  public:
+    int minJumps(int arr[], int n){
+        // Your code here
+        int s=0,e=0,count=0;
+        for(int i=0;i<n-1;i++)
+        {
+            s=max(s,i+arr[i]);
+            if(i==e)
+            {
+                count++;
+                e=s;
+                if(e>=n-1)
+                    return count;
+            }
+        }
+        return -1;
+    }
+};
