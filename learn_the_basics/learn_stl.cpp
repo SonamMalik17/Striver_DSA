@@ -385,7 +385,7 @@ void explainExtra()
 
     // sorting in our own way : sort it according to second element (in increasing order) and if second element is same, then sort it according to first element in decreasing order
     pair<int,int> a[]={{1,2},{2,1},{4,1}};
-    sort(a,a+n,comp);   // here 'comp' is a self-written comparator // {{4,1},{2,1},{1,2}}
+     sort(a,a+n,comp);  // here 'comp' is a self-written comparator // {{4,1},{2,1},{1,2}}
 
     int num=7;
     int cnt=__builtin_popcount(num);     // give the no. of set bits, like convert '7' to binary so no. of 1's will be '3'
