@@ -1,0 +1,12 @@
+class Solution {
+  public:
+    bool arraySortedOrNot(int a[], int n) {
+        // code here
+        for(int i=1;i<n;i++)
+        {
+            if(a[i]<a[i-1])
+            return false;
+        }
+        return true;
+    }
+};
