@@ -1,0 +1,49 @@
+class Solution{
+public:
+    int remove_duplicate(int a[],int n){
+        
+        // Optimal Solution : TC-> O(N), SC-> O(1)
+        int i=0;
+        int j;
+        for(j=1;j<n;j++)
+        {
+            if(a[j]!=a[i])
+            {
+                ++i;
+                a[i]=a[j];
+            }
+        }
+        return i+1;
+        
+        
+        // Brute Force Solution : TC-> O(NLOGN + N), SC-> O(N) for set
+        // using sets
+        // set<int> st;
+        // int i;
+        // for(i=0;i<n;i++)
+        //     st.insert(a[i]);
+        // i=0;
+        // for(auto it:st)
+        // {
+        //     a[i]=it;
+        //     ++i;
+        // }
+        // return i;
+        
+        
+        // without using sets
+        // int i;
+        // vector<int> nums;
+        // for(i=0;i<n;i++)
+        //     nums.push_back(a[i]);
+        
+        // int d=distance(nums.begin(), unique(nums.begin(), nums.end()));
+        // i=0;
+        // for(auto it:nums)
+        // {
+        //     a[i]=it;
+        //     ++i;
+        // }
+        // return d;
+    }
+};
