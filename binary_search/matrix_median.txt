@@ -1,0 +1,79 @@
+// GFG Solution
+class Solution{   
+public:
+    int le_mid(vector<vector<int>> &mat,int midi,int R, int C)
+    {
+        int sum=0;
+        for(int i=0;i<R;i++)
+        {
+            int low=0;
+            int high=C-1;
+            while(low<=high)
+            {
+                int mid=(low+((high-low)/2));
+                if(mat[i][mid]>midi)
+                    high=mid-1;
+                else
+                    low=mid+1;
+            }
+            sum+=low;
+        }
+        return sum;
+    }
+    int median(vector<vector<int>> &mat, int R, int C){
+        // code here   
+        int low=1;
+        int high=2000;
+        while(low<=high)
+        {
+            int mid=(low+((high-low)/2));
+            int cnt=le_mid(mat,mid,R,C);
+            int temp=((R*C)/2);
+            if(cnt>temp)
+                high=mid-1;
+            else
+                low=mid+1;
+        }
+        return low;
+    }
+};
+
+// Interview Bit Solution
+int le_mid(vector<vector<int>> &mat,int midi,int R, int C)
+    {
+        int sum=0;
+        for(int i=0;i<R;i++)
+        {
+            int low=0;
+            int high=C-1;
+            while(low<=high)
+            {
+                int mid=(low+((high-low)/2));
+                if(mat[i][mid]>midi)
+                    high=mid-1;
+                else
+                    low=mid+1;
+            }
+            sum+=low;
+        }
+        return sum;
+    }
+
+
+int Solution::findMedian(vector<vector<int> > &mat) {
+    int R=mat.size();
+    int C=mat[0].size();
+    int low=1;
+    int high=pow(10,9);
+    while(low<=high)
+    {
+        int mid=(low+((high-low)/2));
+        int cnt=le_mid(mat,mid,R,C);
+        int temp=((R*C)/2);
+        if(cnt>temp)
+            high=mid-1;
+        else
+            low=mid+1;
+    }
+    return low;
+}
