@@ -377,7 +377,7 @@ void explainExtra()
     // Here 'a' is an array and 'a' points to first element of array and 'a+n' is same as end() of vectors i.e. it points to memory location next to last element of array 
     // 'a' : 'start iterator' and 'a+n' : 'end iterator' 
     sort(a,a+n);    // default sorting order is ascending
-    sort(a,a+n,greater<int>);   // here 'greater<int> is an inbuilt comparator which sorts in descending order
+    sort(a,a+n,greater<>());   // here 'greater<>() is an inbuilt comparator which sorts in descending order
     sort(a+2,a+4);  // sort only a part of array [start,end)   
 
     // Here 'v' is a vector
