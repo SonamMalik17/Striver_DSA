@@ -1,0 +1,57 @@
+// CN Solution
+#include <bits/stdc++.h> 
+int atoi(string s) {
+    // Write your code here.
+    int flag=0;
+    bool sign;
+        int n=s.size();
+        long long int num=0;
+        int i=0;
+        while(i<n)
+        {
+            if(s[i]>='0' && s[i]<='9')
+            {
+                flag=1;
+                num=(num*10) + (s[i]-'0');
+            }
+            ++i;
+        }
+        if(flag==0)
+            return 0;
+        if(s[0]=='-')
+            num=(-1)*num;
+        return num;
+}
+
+// LC Solution
+class Solution {
+public:
+    int myAtoi(string s) {
+        bool sign;
+        char sn;
+        int n=s.size();
+        double num=0;
+        int i=0;
+        while(s[i]==' ' && i<n)
+            ++i;
+        if(i<n)
+            sign=(s[i]=='-' || s[i]=='+')?true:false;
+        if(sign) 
+        {
+            sn=s[i];
+            ++i;
+        }
+        while(i<n && s[i]>='0' && s[i]<='9')
+        {
+            num=(num*10) + (s[i]-'0');
+            ++i;
+        }
+        if(sn=='-')
+            num=(-1)*num;
+        if(num<INT_MIN)
+            num=INT_MIN;
+        else if(num>INT_MAX)
+            num=INT_MAX;
+        return num;
+    }
+};

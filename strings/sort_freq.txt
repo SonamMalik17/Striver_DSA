@@ -1,0 +1,71 @@
+// CN Solution
+bool static cmp(pair<char, int>& a,pair<char, int>& b)
+{
+	return a.second > b.second;
+}
+string sortByFrequency(int n, string& s)
+{
+	// Write Your Code here
+	 unordered_map<char,int> mp;
+        int i;
+        for(i=0;i<n;i++)
+            ++mp[s[i]];
+        vector<pair<char, int> > A;
+            for (auto& it : mp) {
+        A.push_back(it);
+    }
+        sort(A.begin(),A.end(),cmp);
+        string ans="";
+        for (auto& it : A){
+            if(it.second>1)
+            {
+                for(int j=0;j<it.second-1;j++)
+                    ans+=it.first;
+            }
+            ans+=it.first;
+        }
+
+        //     for (auto& it : A) {
+ 
+        // cout << it.first << ' '
+        //     << it.second << endl;
+         return ans;
+}
+
+// LC Solution
+class Solution {
+public:
+    bool static cmp(pair<char, int>& a,pair<char, int>& b)
+    {
+        return a.second > b.second;
+    }
+
+    string frequencySort(string s) {
+        unordered_map<char,int> mp;
+        int n=s.size();
+        int i;
+        for(i=0;i<n;i++)
+            ++mp[s[i]];
+        vector<pair<char, int> > A;
+            for (auto& it : mp) {
+        A.push_back(it);
+    }
+        sort(A.begin(),A.end(),cmp);
+        string ans="";
+        for (auto& it : A){
+            if(it.second>1)
+            {
+                for(int j=0;j<it.second-1;j++)
+                    ans+=it.first;
+            }
+            ans+=it.first;
+        }
+
+        //     for (auto& it : A) {
+ 
+        // cout << it.first << ' '
+        //     << it.second << endl;
+         return ans;
+    }
+   
+};

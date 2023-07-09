@@ -1,0 +1,20 @@
+// LC Solution
+class Solution {
+public:
+    int maxDepth(string s) {
+        int i,d=0;
+        int mx_depth=0;
+        int n=s.size();
+        for(i=0;i<n;i++)
+        {
+            if(s[i]=='(')
+                ++d;
+            else if(s[i]==')')
+            {
+                mx_depth=max(mx_depth,d);
+                --d;
+            }
+        }
+        return mx_depth;
+    }
+};

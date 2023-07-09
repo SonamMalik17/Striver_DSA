@@ -1,0 +1,39 @@
+// CN Solution
+int romanToInt(string s) {
+    // Write your code here
+    int ans=0;
+        unordered_map <char,int> rmn{
+            {'I',1},{'V',5},{'X',10},{'L',50},{'C',100},{'D',500},{'M',1000}
+        };
+        int n=s.length();
+        for(int i=0;i<n-1;i++)
+        {
+            if(rmn[s[i]]<rmn[s[i+1]])
+                ans=ans-rmn[s[i]];
+            else
+                ans=ans+rmn[s[i]];
+        }
+        ans+=rmn[s[n-1]];
+        return ans;
+}
+
+// LC Solution
+class Solution {
+public:
+    int romanToInt(string s) {
+        int ans=0;
+        unordered_map <char,int> rmn{
+            {'I',1},{'V',5},{'X',10},{'L',50},{'C',100},{'D',500},{'M',1000}
+        };
+        int n=s.length();
+        for(int i=0;i<n-1;i++)
+        {
+            if(rmn[s[i]]<rmn[s[i+1]])
+                ans=ans-rmn[s[i]];
+            else
+                ans=ans+rmn[s[i]];
+        }
+        ans+=rmn[s[n-1]];
+        return ans;
+    }
+};
