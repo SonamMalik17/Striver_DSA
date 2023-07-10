@@ -1,0 +1,27 @@
+int subwithk(string s,int k)
+{
+    int arr[26]={0};
+    int count=0;
+    int distinct=0;
+    int i,left=0;
+    for(i=0;i<s.length();i++)
+    {
+        if(arr[s[i]-'a'] == 0)
+            distinct++;
+        arr[s[i]-'a']++;
+        while(distinct>k)
+        {
+            arr[s[left]-'a']--;
+            if(arr[s[left]-'a'] == 0)
+                distinct--;
+            left++;
+        }
+        count+=i-left+1;
+    }
+    return count;
+}
+
+int countSubStrings(string str, int k) 
+{
+    return subwithk(str, k) - subwithk(str, k - 1);
+}
