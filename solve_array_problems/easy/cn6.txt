@@ -1,0 +1,24 @@
+#include <bits/stdc++.h> 
+#include <iostream>
+using namespace std;
+void rotate(int arr[],int N,int K)
+{
+    K=K%N;
+    reverse(arr,arr+K);
+    reverse(arr+K,arr+N);
+    reverse(arr,arr+N);
+}
+int main() {
+    //Write your code here
+    int N;
+    cin>>N;
+    int arr[N];
+    for(int i=0;i<N;i++)
+        cin>>arr[i];
+    int K;
+    cin>>K;
+    rotate(arr,N,K);
+    for(int i=0;i<N;i++)
+        cout<<arr[i]<<" ";
+    return 0;
+}
