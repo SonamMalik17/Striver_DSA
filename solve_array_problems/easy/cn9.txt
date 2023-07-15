@@ -1,3 +1,5 @@
+// TC : O(n1+n2) , SC : O(n1+n2) for returning the answer not for solving the problem
+
 #include<bits/stdc++.h>
 vector < int > sortedArray(vector < int > a, vector < int > b) {
     // Write your code here
