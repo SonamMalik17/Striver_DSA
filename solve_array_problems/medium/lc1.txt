@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int,int> mpp;
+        int i,more,a;
+        for(i=0;i<nums.size();i++)
+        {
+            a=nums[i];
+            more=target-a;
+            if(mpp.find(more)!=mpp.end())
+                break;
+            mpp[a]=i;
+        }
+        return {mpp[more],i};
+
+        // int i,j,c;
+        // int length;
+        // length=nums.size();
+        // vector<int> res(2);
+        // for(i=0;i<length;i++)
+        // {
+        //     for(j=0;j<length;j++)
+        //     {
+        //         if(i!=j)
+        //         {
+        //             if((nums[i]+nums[j])==target)
+        //             {
+        //                 res[0]=i;
+        //                 res[1]=j;
+        //             }
+        //         }
+        //     }
+        // }
+        // return res;
+    }
+};
