@@ -1,0 +1,9 @@
+bool isKthBitSet(int n, int k)
+{
+    // Write your code here.
+    int mask=1<<(k-1);
+    bool set=mask&n;
+    if(set)
+        return true;
+    return false;
+}
