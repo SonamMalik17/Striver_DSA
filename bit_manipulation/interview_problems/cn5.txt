@@ -1,0 +1,39 @@
+vector<int> twoOddNum(vector<int> a){
+    // Write your code here.
+    // TC : O(n) + O(32) + O(n)
+    vector<int> v;
+    int XOR=0;
+    int n=a.size();
+    int i;
+    for(i=0;i<n;i++)
+        XOR=XOR^a[i];
+    int cnt=0;
+    while(XOR)
+    {
+        if(XOR&1)
+            break;
+        ++cnt;
+        XOR=XOR>>1;
+    }
+    int XOR1=0;
+    int XOR2=0;
+    for(i=0;i<n;i++)
+    {
+        if(a[i]&(1<<cnt))
+            XOR1=XOR1^a[i];
+        else
+            XOR2=XOR2^a[i];
+    }
+    if(XOR2>XOR1)
+    {
+        v.push_back(XOR2);
+        v.push_back(XOR1);
+        return v;
+    }
+    else
+    {
+        v.push_back(XOR1);
+        v.push_back(XOR2);
+        return v;
+    }
+}
