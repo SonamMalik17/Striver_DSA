@@ -1,0 +1,16 @@
+vector<int> printDivisors(int n) {
+    // Write your code here
+    vector<int> v;
+    set<int> st;
+    for(int i=1;i*i<=n;i++)
+    {
+        if(n%i==0)
+        {
+            st.insert(i);
+            st.insert(n/i);
+        }
+    }
+    for(auto it:st)
+        v.push_back(it);
+    return v;
+}

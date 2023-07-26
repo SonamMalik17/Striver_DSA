@@ -1,0 +1,12 @@
+int power(int N, int reverse){
+    int mod = 1e9 + 7;
+    long long result=1;
+    long long base=N;
+    while(reverse > 0){
+        if(reverse & 1)
+            result=(result*base)%mod;
+        base=(base*base)%mod;   
+        reverse=reverse>>1;
+    }
+    return result;
+}

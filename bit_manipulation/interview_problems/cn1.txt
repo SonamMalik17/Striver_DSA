@@ -1,0 +1,12 @@
+int flipBits(int A, int B){
+    // Write your code here.
+    int XOR=A^B;
+    int cnt=0;
+    while(XOR)
+    {
+        if(XOR&1)
+            ++cnt;
+        XOR>>=1;
+    }
+    return cnt;
+}
