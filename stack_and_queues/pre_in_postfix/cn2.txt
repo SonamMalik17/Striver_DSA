@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+string prefixToInfixConversion(string &exp){
+	// Write your code here.
+	int n=exp.size();
+    stack<string> st;
+    for(int i=n-1;i>=0;i--)
+    {
+        if(isalnum(exp[i]))
+        {
+            string op(1,exp[i]);
+            st.push(op);
+        }
+        else
+        {
+            if(!st.empty())
+            {
+                string second_op=st.top();
+                st.pop();
+                string first_op=st.top();
+                st.pop();
+                st.push('('+second_op+exp[i]+first_op+')');
+            }
+        }
+    }
+	return st.top();
+}

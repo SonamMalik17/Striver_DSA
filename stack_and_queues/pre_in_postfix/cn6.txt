@@ -1,0 +1,77 @@
+// Infix to Prefix Conversion and different from the link given in Striver's A2Z DSA 
+
+#include<bits/stdc++.h>
+int precedence(char operato)
+{
+    switch (operato) {
+    case '+':
+    case '-':
+        return 1;
+    case '*':
+    case '/':
+        return 2;
+    case '^':
+        return 3;
+	default:
+		return -1;
+    }
+}
+bool isOperator(char ch)
+{
+    return (ch == '+' || ch == '-' || ch == '*' || ch == '/'
+            || ch == '^');
+}
+string infixToPostfix(string exp){
+	// Write your code here
+	int n=exp.size();
+	string res="";
+	stack<int> st;
+	for(int i=n-1;i>=0;i--)
+	{
+		if(isalnum(exp[i]))
+			res+=exp[i];
+		else if(exp[i]==')')
+			st.push(exp[i]);
+		else if(exp[i]=='(')
+		{
+			while(st.top()!='(')
+			{
+				res+=st.top();
+				st.pop();
+			}	
+			st.pop();
+		}
+		else
+		{
+			if(st.empty())
+				st.push(exp[i]);
+			else
+			{
+				if(isOperator(st.top()))
+				{
+					if(precedence(exp[i])>precedence(st.top()))
+						st.push(exp[i]);
+					else
+					{
+						while(!st.empty() && (precedence(exp[i])<precedence(st.top())))
+						{
+							res+=st.top();
+							st.pop();
+						}
+						st.push(exp[i]);
+					}
+				}
+				else
+					st.push(exp[i]);
+			}
+		}
+	}
+	while(!st.empty())
+	{
+		res+=st.top();
+		st.pop();
+	}
+	reverse(res.begin(),res.end());
+	cout<<"res:"<<endl;
+	return res;
+}

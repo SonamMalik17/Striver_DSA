@@ -1,0 +1,25 @@
+string postToInfix(string exp) {
+    // Write your code here.
+    int n=exp.size();
+    stack<string> st;
+    for(int i=0;i<n;i++)
+    {
+        if(isalnum(exp[i]))
+        {
+            string op(1,exp[i]);
+            st.push(op);
+        }
+        else
+        {
+            if(!st.empty())
+            {
+                string second_op=st.top();
+                st.pop();
+                string first_op=st.top();
+                st.pop();
+                st.push('('+first_op+exp[i]+second_op+')');
+            }
+        }
+    }
+    return st.top();
+}
