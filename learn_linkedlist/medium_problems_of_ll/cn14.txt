@@ -1,0 +1,58 @@
+/**
+ * Definition of linked list:
+ *
+ * class Node {
+ * public:
+ *      int data;
+ *      Node *next;
+ *      Node() {
+ *          this->data = 0;
+ *          this->next = NULL;
+ *      }
+ *      Node(int data) {
+ *          this->data = data;
+ *          this->next = NULL;
+ *      }
+ *      Node (int data, Node *next) {
+ *          this->data = data;
+ *          this->next = next;
+ *      }
+ * };
+ *
+ *************************************************************************/
+Node* reverse(Node* head)
+{
+    Node* prev=NULL;
+    Node* curr=head;
+    Node* Next;
+    while(curr!=NULL)
+    {
+        Next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=Next;
+    }
+    return prev;
+}
+Node *addOne(Node *head)
+{
+    // Write Your Code Here.
+    Node* res=reverse(head);
+    int carry=1;
+    int sum;
+    Node* temp;
+    Node* res1=res;
+    while(res!=NULL)
+    {
+        sum=carry+res->data;
+        carry=(sum>=10)? 1:0;
+        sum=sum%10;
+        res->data=sum;
+        temp=res;
+        res=res->next;
+    }
+    if(carry)
+        temp->next=new Node(carry);
+    head=reverse(res1);
+    return head;
+}
