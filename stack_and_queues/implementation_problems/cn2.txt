@@ -1,0 +1,18 @@
+vector<int> findStockSpans(vector<int>& prices) {
+    // Write your code here.
+    vector<int> res;
+    stack<pair<int,int>> st;
+    for(int i=0;i<prices.size();i++)
+    {
+        int span=1;
+        while (!st.empty() && st.top().first < prices[i]) 
+        {
+            span = span + st.top().second;
+            st.pop();
+        }
+        st.push({prices[i],span});
+        res.push_back(span);
+    }
+    return res;
+}
+
