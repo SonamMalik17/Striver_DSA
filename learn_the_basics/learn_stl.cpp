@@ -353,6 +353,11 @@ void explainUnorderedMap()
 {
     // Keys will be unique but it does not maintain a specific order of the elements.
     // Time Complexity in most cases : O(1) and in worst case : O(N) 
+    unordered_map<int,int> mp={{1,2},{1,4}};
+    for(auto it:mp)
+    {
+        cout<<mp.first<<mp.second;
+    }
 }
 
 
@@ -419,11 +424,11 @@ int main()
     // explainUSet();
     // explainMap();
     // explainMultiMap();
-    // explainUnorderedMap();
+    explainUnorderedMap();
 
 
     // Algorithms
 
-    explainExtra();
+    // explainExtra();
     return 0;
 }
