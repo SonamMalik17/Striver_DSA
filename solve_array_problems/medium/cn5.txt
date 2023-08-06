@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+int longestSubarrayWithSumK(vector<int> a, long long k) {
+
+    // TC : O(2N), SC : O(1)
+    // Write your code here
+    int n=a.size();
+    int len=0;
+    long long sum=0;
+    int i=0,j;
+    for(j=0;j<n;j++)
+    {
+        sum+=a[j];
+        while(sum>k && i<=j)
+        {
+            sum-=a[i];
+            ++i;
+        }
+        if(sum==k)
+            len=max(len,j-i+1);
+    }
+    return len;
+}
