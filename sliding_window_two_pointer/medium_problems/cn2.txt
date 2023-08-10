@@ -1,0 +1,20 @@
+int longestSubSeg(vector<int> &nums , int n, int k){
+    // Write your code here.
+    int j=0;
+    int max_con_one=0;
+    int count_zero=0;
+    for(int i=0;i<n;i++)
+    {
+        if(nums[i]==0)
+            count_zero++;
+            while(count_zero>k)
+            {
+                if(nums[j]==0)
+                    count_zero--;
+                j++;
+            }
+        int window_length=i-j+1;
+        max_con_one=max(max_con_one,window_length);
+    }
+    return max_con_one;
+}
