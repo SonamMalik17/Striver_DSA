@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        vector<int> hash(256);
+        int beg=0,lc=0;
+        int end;
+        for(end=0;end<s.size();end++)
+        {
+            lc=max(lc,++hash[s[end]]);
+            if(end-beg+1-lc>k)
+                --hash[s[beg++]];
+        }
+        return end-beg;
+    }
+};
