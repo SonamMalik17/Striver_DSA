@@ -1,0 +1,19 @@
+int maxPoints(vector<int>&c , int k){
+    // Write your code here.
+    int n = c.size();
+    int windowSize = n - k;
+    int totalSum = 0;
+    int currentSum = 0;
+    for (int i = 0; i < n; ++i) {
+        totalSum += c[i];
+        if (i < windowSize) {
+            currentSum += c[i];
+        }
+    }
+    int minSum = currentSum;
+    for (int i = windowSize; i < n; ++i) {
+        currentSum += c[i] - c[i - windowSize];
+        minSum = min(minSum, currentSum);
+    }
+    return totalSum - minSum;
+}
