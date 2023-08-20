@@ -1,0 +1,21 @@
+int longestSuccessiveElements(vector<int>&nums) {
+    // Write your code here.
+    unordered_set<int> st;
+    int currcnt,longest=0;
+    for(auto it:nums)
+        st.insert(it);
+    for(auto ite:st)
+    {
+        if(st.find(ite-1)==st.end())
+        {
+            currcnt=1;
+            while(st.find(ite+1)!=st.end())
+            {
+                ++currcnt;
+                ++ite;
+            }
+            longest=max(longest,currcnt);
+        }
+    }
+    return longest;
+}
