@@ -1,0 +1,13 @@
+#include<vector>
+void rotateMatrix(vector<vector<int>>& matrix) {
+	int n=matrix.size();
+	int i,j,temp;
+	// transpose
+	for(i=0;i<n;i++)
+	{
+		for(j=i+1;j<n;j++)
+			swap(matrix[i][j],matrix[j][i]);
+		//reverse the rows
+		reverse(matrix[i].begin(),matrix[i].end());
+	}
+}
