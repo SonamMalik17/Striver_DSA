@@ -1,0 +1,19 @@
+vector<vector<int>> pascalTriangle(int n) {
+    // Write your code here.
+    int i,j;
+    vector<vector<int>> res;
+    for(i=1;i<=n;i++)
+    {
+        int ans=1;
+        vector<int> v;
+        v.push_back(ans);
+        for(j=1;j<i;j++)
+        {
+            ans*=(i-j);
+            ans/=j;
+            v.push_back(ans);
+        }
+        res.push_back(v);
+    }
+    return res;
+}
