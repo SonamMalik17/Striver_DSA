@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+void ifGreaterSwap(vector<long long> &a, vector<long long> &b,int i1,int i2)
+{
+	if(a[i1]>b[i2])
+		swap(a[i1],b[i2]);
+}
+void mergeTwoSortedArraysWithoutExtraSpace(vector<long long> &a, vector<long long> &b){
+	// Write your code here.
+	int n=a.size();
+	int m=b.size();
+	int len=n+m;
+	int gap=(len/2)+(len%2);
+	while(gap>0)
+	{
+		int ptr1=0;
+		int ptr2=ptr1+gap;
+		while(ptr2<len)
+		{
+			if(ptr1<n && ptr2>=n)
+				ifGreaterSwap(a,b,ptr1,ptr2-n);
+			else if(ptr1>=n)
+				ifGreaterSwap(b,b,ptr1-n,ptr2-n);
+			
+			else 
+				ifGreaterSwap(a,a,ptr1,ptr2);
+			ptr1++;
+			ptr2++;
+		}
+		if(gap==1)
+			break;
+		gap=(gap/2)+(gap%2);
+	}	
+}
