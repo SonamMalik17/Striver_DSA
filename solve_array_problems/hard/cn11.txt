@@ -1,0 +1,64 @@
+int merge(vector<int>& a,int low,int mid,int high)
+{
+    int i,j,m,temp[high-low+1];
+    i=low;
+    j=mid+1;
+    m=0;
+    int cnt=0;
+    while (i <= mid && j <= high) {
+        if (a[i] > 2 * a[j]) {
+            cnt += (mid - i + 1); // Increment count when the condition is met.
+            j++;
+        } else {
+            i++;
+        }
+    }
+    i = low;
+    j = mid + 1;
+    while(i<=mid && j<=high)
+    {
+        if(a[i]>a[j])
+        {
+            temp[m]=a[j];
+            j++;
+            m++;
+        }
+        else
+        {
+            temp[m]=a[i];
+            i++;
+            m++;
+        }
+    }
+    while(j<=high)
+    {
+        temp[m]=a[j];
+        j++;
+        m++;
+    }      
+    while(i<=mid)
+    {
+        temp[m]=a[i];
+        i++;
+        m++;
+    }
+    for(m=low;m<=high;m++)
+        a[m]=temp[m-low];
+    return cnt;
+}
+int merge_sort(vector<int>& a,int low,int high)
+{
+    int cnt=0;
+    if(low>=high) return cnt;
+    int mid=(low+high)/2;
+
+    cnt+=merge_sort(a,low,mid);
+    cnt+=merge_sort(a,mid+1,high);
+    cnt+=merge(a,low,mid,high);
+    return cnt;
+}
+int team(vector<int>& a, int n) {
+    // Write your code here.
+    return merge_sort(a,0,n-1);
+    
+}
