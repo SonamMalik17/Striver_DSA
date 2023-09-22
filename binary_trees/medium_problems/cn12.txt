@@ -1,0 +1,36 @@
+/************************************************************
+
+    Following is the TreeNode class structure:
+
+    template <typename T>
+    class TreeNode
+    {
+    public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T dat)
+        {
+            this->data = dat;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+bool isSymmetricHelp(TreeNode<int>* left,TreeNode<int>* right)
+{
+    if(left==NULL || right==NULL)
+        return left==right;
+    if(left->data!=right->data)
+        return false;
+    return isSymmetricHelp(left->left,right->right) && isSymmetricHelp(left->right,right->left);
+}
+bool isSymmetric(TreeNode<int> *root)
+{
+    // Write your code here
+    if(root==NULL)
+            return true;
+        return isSymmetricHelp(root->left,root->right);
+}
