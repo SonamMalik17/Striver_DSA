@@ -1,0 +1,36 @@
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+int preorder(TreeNode<int>* root, int p, int q)
+{
+    if(root==NULL)
+        return -1;
+    if(root->data==p || root->data==q)
+        return root->data;
+    int lefty = preorder(root->left, p, q);
+    int righty = preorder(root->right, p, q);
+    if (lefty != -1 && righty != -1)
+        return root->data;
+    return (lefty != -1) ? lefty : righty;
+}
+int lowestCommonAncestor(TreeNode<int> *root, int x, int y)
+{
+	//    Write your code here
+    return preorder(root,x,y);
+}
