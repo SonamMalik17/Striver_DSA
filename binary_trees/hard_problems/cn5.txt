@@ -1,0 +1,83 @@
+/*************************************************************
+
+    Following is the Binary Tree node structure for reference:
+
+    class BinaryTreeNode{
+	public :
+        T data;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+*************************************************************/
+void markParents(BinaryTreeNode<int>* root,unordered_map<BinaryTreeNode<int>*,BinaryTreeNode<int>*> & parent_track)
+{
+    queue<BinaryTreeNode<int>*> q;
+    q.push(root);
+    while(!q.empty())
+    {
+        BinaryTreeNode<int>* current=q.front();
+        q.pop();
+        if(current->left)
+        {
+            parent_track[current->left]=current;
+            q.push(current->left);
+        }
+        if(current->right)
+        {
+            parent_track[current->right]=current;
+            q.push(current->right);
+        }
+    }
+}
+vector<BinaryTreeNode<int>*> printNodesAtDistanceK(BinaryTreeNode<int>* root, BinaryTreeNode<int>* target, int k) {
+    // Write your code here.
+    unordered_map<BinaryTreeNode<int>*,BinaryTreeNode<int>*> parent_track;    // node->parent
+    markParents(root,parent_track);
+
+    unordered_map<BinaryTreeNode<int>*,bool> visited;
+    queue<BinaryTreeNode<int>*> q;
+    q.push(target);
+    visited[target]=true;
+    int ds=0;
+    while(!q.empty())
+    {
+        int size=q.size();
+        if(ds++ ==k)
+            break;
+        for(int i=0;i<size;i++)
+        {
+            BinaryTreeNode<int>* current=q.front();
+            q.pop();
+            if(current->left && !visited[current->left])
+            {
+                q.push(current->left);
+                visited[current->left]=true;
+            }
+            if(current->right && !visited[current->right])
+            {
+                q.push(current->right);
+                visited[current->right]=true;
+            }
+            if(parent_track[current] && !visited[parent_track[current]])
+            {
+                q.push(parent_track[current]);
+                visited[parent_track[current]]=true;
+            }
+        }
+    }
+    vector<BinaryTreeNode<int>*> res;
+    while(!q.empty())
+    {
+        BinaryTreeNode<int>* current=q.front();
+        q.pop();
+        res.push_back(current);
+    }
+    return res;
+}
