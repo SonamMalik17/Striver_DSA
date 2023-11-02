@@ -1,0 +1,26 @@
+int Floor(BinaryTreeNode<int> *root, int key)
+{
+		/*Write your code here. 
+	 *Don't write main().
+	 *Don't take input, it is passed as function argument.
+	 *Don't print output.
+	 *Taking input and printing output is handled automatically.
+	*/ 
+	int floor=-1;
+    while(root)
+    {
+        if(root->data==key)
+        {
+            floor=root->data;
+            return floor;
+        }
+        if(root->data>key)
+            root=root->left;
+        else
+        {
+            floor=root->data;
+            root=root->right;
+        }
+    }
+    return floor;
+}
