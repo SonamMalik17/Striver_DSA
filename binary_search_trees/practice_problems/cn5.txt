@@ -1,0 +1,55 @@
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode
+    {
+    public:
+        T data;
+        TreeNode<T> *left, *right;
+        TreeNode() : data(0), left(NULL), right(NULL) {}
+        TreeNode(T x) : data(x), left(NULL), right(NULL) {}
+        TreeNode(T x, TreeNode<T> *left, TreeNode<T> *right) : data(x), left(left), right(right) {}
+    };
+
+************************************************************/
+
+int kthSmallest(TreeNode<int> *root, int k)
+{
+    //  Write the code here.
+    int count = 0;
+    int ans;
+    TreeNode<int>* curr = root;
+    while(curr){
+        if(curr->left == NULL){
+            count++;
+            if(count == k){
+                ans = curr->data;
+            }
+            
+            curr = curr->right;
+        }
+        else{
+            TreeNode<int>* prev = curr->left;
+            
+            while(prev->right && prev->right != curr){
+                prev = prev->right;
+            }
+            
+            if(prev->right == NULL){
+                prev->right = curr;
+                curr = curr->left;
+            }
+            else{
+                count++;
+                prev->right = NULL;
+                if(count == k){
+                    ans = curr->data;
+                }
+                curr = curr->right;
+            }
+        }
+    }
+    return ans;
+}
