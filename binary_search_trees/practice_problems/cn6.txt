@@ -1,0 +1,68 @@
+/**********************************************************
+	Following is the Binary Tree Node class structure
+
+	template <typename T>
+	class BinaryTreeNode {
+    	public : 
+    	T data;
+    	BinaryTreeNode<T> *left;
+    	BinaryTreeNode<T> *right;
+
+    	BinaryTreeNode(T data) {
+        	this -> data = data;
+        	left = NULL;
+        	right = NULL;
+    	}
+	};
+
+***********************************************************/
+
+bool isBST(BinaryTreeNode<int> *root) {
+	// Write your code here
+	bool b=true;
+	bool first=true;
+	int prev;
+	BinaryTreeNode<int>* curr=root;
+	while(curr)
+	{
+		if(curr->left==NULL)
+		{
+			if(first)
+			{
+				prev=curr->data;
+				first=false;
+			}
+			else
+			{
+				if(curr->data<=prev)
+					b=false;
+				else
+					prev=curr->data;
+			}
+			curr=curr->right;
+		}
+		else
+		{
+			BinaryTreeNode<int>* tmp=curr->left;
+			while(tmp->right && tmp->right!=curr)
+				tmp=tmp->right;
+			if(tmp->right==NULL)
+			{
+				tmp->right=curr;
+				curr=curr->left;
+			}
+			else
+			{
+				if(curr->data<=prev)
+					b=false;
+				else
+					prev=curr->data;
+				tmp->right=NULL;
+				curr=curr->right;
+			}
+		}
+	}
+	if(b)
+		return true;
+	return false;
+}
